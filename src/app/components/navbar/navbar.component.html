@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/menu-list" routerLinkActive="active">Lista del Menú</a>
+        </li>
+        @if (authService.isLoggedIn()) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/menu-form" routerLinkActive="active">Agregar Elemento</a>
+          </li>
+        }
+      </ul>
+      <div class="d-flex align-items-center">
+        <!-- Icono de usuario -->
+        @if (!authService.isLoggedIn()) {
+          <a class="nav-link p-0" [routerLink]="'/login'" title="Iniciar Sesión">
+            <i class="bi bi-box-arrow-in-right" style="font-size: 1.5rem;"></i>
+          </a>
+        }
+        @if (authService.isLoggedIn()) {
+          <div class="dropdown">
+            <a
+              class="nav-link dropdown-toggle p-0"
+              href="#"
+              id="userDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              title="Opciones de Usuario"
+            >
+              <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a></li>
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </nav>
+  

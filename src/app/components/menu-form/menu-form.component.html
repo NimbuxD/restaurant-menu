@@ -1,0 +1,76 @@
+<form [formGroup]="menuForm" (ngSubmit)="onSubmit()" class="p-3 border rounded">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input
+        id="name"
+        formControlName="name"
+        class="form-control"
+        placeholder="Nombre del plato"
+        required
+      />
+      @if (menuForm.get('name')?.invalid && menuForm.get('name')?.touched) {
+      <div class="text-danger">El nombre es obligatorio.</div>
+      }
+    </div>
+  
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        placeholder="Descripción del plato"
+      ></textarea>
+    </div>
+  
+    <div class="mb-3">
+      <label for="price" class="form-label">Precio</label>
+      <input
+        id="price"
+        type="number"
+        formControlName="price"
+        class="form-control"
+        placeholder="Precio"
+        required
+      />
+      @if (menuForm.get('price')?.invalid && menuForm.get('price')?.touched) {
+      <div class="text-danger">El precio debe ser mayor a 0.</div>
+      }
+    </div>
+  
+    <div class="mb-3">
+      <label for="color" class="form-label">Color de Fondo</label>
+      <input
+        id="color"
+        type="color"
+        formControlName="color"
+        class="form-control form-control-color"
+      />
+    </div>
+  
+    <div class="mb-3">
+      <label for="image" class="form-label">Imagen (URL)</label>
+      <input
+        id="image"
+        formControlName="image"
+        class="form-control"
+        placeholder="URL de la imagen"
+      />
+    </div>
+  
+    <!-- <div class="mb-3">
+      <label for="position" class="form-label">Posición</label>
+      <input
+        id="position"
+        type="number"
+        formControlName="position"
+        class="form-control"
+        placeholder="Posición en el menú"
+      />
+    </div> -->
+  
+    <button type="submit" class="btn btn-primary w-100" [disabled]="menuForm.invalid">
+      Guardar
+    </button>
+  </form>
+  
