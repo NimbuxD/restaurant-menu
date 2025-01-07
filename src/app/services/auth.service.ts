@@ -4,14 +4,24 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = false;
+  private readonly AUTH_KEY = 'isAuthenticated';
 
-  constructor() {}
+  constructor() {
+    // Al iniciar, verifica si la sesión está guardada
+    const savedState = localStorage.getItem(this.AUTH_KEY);
+    if (savedState) {
+      this.isAuthenticated = JSON.parse(savedState);
+    }
+  }
+
+  private isAuthenticated = false;
 
   login(username: string, password: string): boolean {
     // Aquí puedes agregar lógica real de autenticación (por ejemplo, con un backend)
     if (username === 'admin' && password === '1234') {
       this.isAuthenticated = true;
+      // Guarda el estado de autenticación en localStorage
+      localStorage.setItem(this.AUTH_KEY, JSON.stringify(this.isAuthenticated));
       return true;
     }
     return false;
@@ -19,6 +29,8 @@ export class AuthService {
 
   logout(): void {
     this.isAuthenticated = false;
+    // Elimina el estado de autenticación de localStorage
+    localStorage.removeItem(this.AUTH_KEY);
   }
 
   isLoggedIn(): boolean {

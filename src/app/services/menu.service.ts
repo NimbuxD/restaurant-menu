@@ -29,7 +29,7 @@ export class MenuService {
       console.error('Error fetching menu item:', error);
       return null;
     }
-  
+    console.log('Fetched menu item:', data);
     return data as IMenuItem;
   }
   

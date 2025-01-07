@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { IMenuItem } from '../../interfaces/menu-item.interface';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -8,7 +8,7 @@ import { FormatPricePipe } from "../../pipes/format-price.pipe";
 
 @Component({
   selector: 'app-menu-list',
-  imports: [RouterModule, FormatPricePipe],
+  imports: [RouterModule, FormatPricePipe, CommonModule],
   templateUrl: './menu-list.component.html',
   styleUrl: './menu-list.component.scss'
 })

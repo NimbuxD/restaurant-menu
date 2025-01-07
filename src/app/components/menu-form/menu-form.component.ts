@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MenuService } from '../../services/menu.service';
-import { IMenuItem } from '../../interfaces/menu-item.interface';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -50,6 +49,7 @@ export class MenuFormComponent {
 
   async onSubmit() {
     if (this.menuForm.valid) {
+      const formValue = this.menuForm.value;
       try {
         if (this.isEditMode && this.menuItemId !== null) {
           // Editar elemento existente
